@@ -1,7 +1,7 @@
 {
   "name": "My Story App",
   "short_name": "Story",
-  "start_url": "/",
+  "start_url": "/story-app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",

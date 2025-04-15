@@ -12,7 +12,6 @@ export const StoryPresenter = {
     const { getItem: getItemSub, removeItem: removeItemSub } = useLocalStorage('endpoint');
     const token = getItem();
 
-    // Inisialisasi IndexedDB
     await initDB().catch(error => {
       console.error('Failed to initialize IndexedDB:', error);
     });
@@ -21,7 +20,9 @@ export const StoryPresenter = {
       container.innerHTML = StoryView.renderLoading();
 
       try {
-        if (!token) throw new Error('Not login yet, Please login first.');
+        if (!token) {
+          window.location.hash = '/login';
+        }
 
         let listStory;
         let isOffline = false;
