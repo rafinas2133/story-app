@@ -1,14 +1,35 @@
 {
-  "name": "My Story App",
+  "name": "Story App",
   "short_name": "Story",
   "start_url": "/story-app/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "#007bff",
   "icons": [
     {
-      "src": "favicon.png",
-      "sizes": "40x40",
+      "src": "/story-app/favicons.png",
+      "type": "image/png",
+      "sizes": "40x40"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tambah Data Baru",
+      "short_name": "Tambah Data",
+      "description": "Tambahkan cerita baru ke aplikasi",
+      "url": "/story-app/add",
+      "icons": [{ "src": "/story-app/favicons.png", "sizes": "40x40" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/story-app/Screenshot-desktop.png",
+      "sizes": "1918x865",
+      "type": "image/png"
+    },
+    {
+      "src": "/story-app/Screenshot-mobile.png",
+      "sizes": "242x527",
       "type": "image/png"
     }
   ]
