@@ -1,4 +1,3 @@
-import { openDB, deleteDB, wrap, unwrap } from 'idb';
 
 const DB_NAME = 'story-app-db';
 const DB_VERSION = 1;
@@ -34,7 +33,6 @@ export const initDB = () => {
   });
 };
 
-// Simpan stories ke IndexedDB
 export const saveStories = async (stories) => {
   return new Promise((resolve, reject) => {
     if (!db) {
@@ -45,7 +43,6 @@ export const saveStories = async (stories) => {
     const transaction = db.transaction(STORY_STORE_NAME, 'readwrite');
     const store = transaction.objectStore(STORY_STORE_NAME);
 
-    // Hapus semua data lama sebelum menyimpan yang baru
     const clearRequest = store.clear();
 
     clearRequest.onsuccess = () => {
@@ -83,7 +80,6 @@ export const saveStories = async (stories) => {
   });
 };
 
-// Ambil semua stories dari IndexedDB
 export const getAllStories = () => {
   return new Promise((resolve, reject) => {
     if (!db) {
@@ -94,7 +90,6 @@ export const getAllStories = () => {
     const transaction = db.transaction(STORY_STORE_NAME, 'readonly');
     const store = transaction.objectStore(STORY_STORE_NAME);
     
-    // Menggunakan index createdAt untuk mendapatkan stories terurut
     const index = store.index('createdAt');
     const request = index.getAll();
 
@@ -109,36 +104,10 @@ export const getAllStories = () => {
   });
 };
 
-// Hapus story berdasarkan ID
-export const deleteStory = (id) => {
-  return new Promise((resolve, reject) => {
-    if (!db) {
-      reject('Database not initialized');
-      return;
-    }
-
-    const transaction = db.transaction(STORY_STORE_NAME, 'readwrite');
-    const store = transaction.objectStore(STORY_STORE_NAME);
-    const request = store.delete(id);
-
-    request.onsuccess = () => {
-      console.log(`Story with ID ${id} deleted`);
-      resolve(true);
-    };
-
-    request.onerror = (event) => {
-      console.error('Error deleting story:', event.target.error);
-      reject('Failed to delete story');
-    };
-  });
-};
-
-// Hapus semua data di IndexedDB saat logout
 export const clearAllData = () => {
   return new Promise((resolve, reject) => {
     if (!db) {
       try {
-        // Jika database belum diinisialisasi, coba inisialisasi terlebih dahulu
         initDB().then(database => {
           db = database;
           clearData();
@@ -172,7 +141,6 @@ export const clearAllData = () => {
   });
 };
 
-// Cek apakah database memiliki data story
 export const hasStories = async () => {
   return new Promise((resolve, reject) => {
     if (!db) {

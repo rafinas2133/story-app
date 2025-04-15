@@ -2,6 +2,7 @@ import routes from '../routes/routes';
 import { getActiveRoute } from '../routes/url-parser';
 import { useLocalStorage } from '../utils';
 import { initDB, clearAllData } from '../data/db';
+import NotFoundPage from './not-found/not-fount-page';
 
 class App {
   #content = null;
@@ -39,7 +40,7 @@ class App {
 
   async renderPage() {
     const url = getActiveRoute();
-    const page = routes[url];
+    const page = routes[url] || new NotFoundPage();;
 
     this.#content.innerHTML = await page.render();
     await page.afterRender();

@@ -28,19 +28,16 @@ export const StoryPresenter = {
         let isOffline = false;
 
         try {
-          // Coba ambil data dari API
           const response = await getStories(token);
           
           if (response.error) throw new Error(response.message);
           
           listStory = response.listStory;
           
-          // Simpan data ke IndexedDB untuk penggunaan offline
           await saveStories(listStory);
         } catch (apiError) {
           console.error('API Error:', apiError);
           
-          // Cek apakah ada data di IndexedDB
           const hasOfflineData = await hasStories();
           
           if (hasOfflineData) {
@@ -51,11 +48,9 @@ export const StoryPresenter = {
           }
         }
 
-        // Render stories
         container.innerHTML = StoryView.renderStories(listStory, isOffline);
         document.querySelector('#story-container').style.height = '100%';
         
-        // Initialize maps jika data berisi lokasi
         if (listStory.some(story => story.lat && story.lon)) {
           StoryView.initializeMaps(listStory);
         }
