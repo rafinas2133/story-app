@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker.register('/story-app/service-worker.js')
         .then(registration => {
           console.log('ServiceWorker berhasil didaftarkan:', registration.scope);
         })
