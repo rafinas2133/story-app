@@ -7,22 +7,22 @@
   "theme_color": "#007bff",
   "icons": [
     {
-      "src": "/story-app/favicons.png",
+      "src": "/story-app/favicon.png",
       "type": "image/png",
       "sizes": "40x40"
     },
     {
-      "src": "/story-app/favicons-64.png",
+      "src": "/story-app/favicon-64.png",
       "type": "image/png",
       "sizes": "64x64"
     },
     {
-      "src": "/story-app/favicons-72.png",
+      "src": "/story-app/favicon-72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "/story-app/favicons-144.png",
+      "src": "/story-app/favicon-144.png",
       "type": "image/png",
       "sizes": "144x144"
     }
